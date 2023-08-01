@@ -55,6 +55,7 @@ def user_menu(choice):
       
 # this function to show the event ID with the highest number of tickets.
 # searching by the maximum of the number of tickets entered from admin and user
+# O(lgN), N being the list
 def display_statistics(tickets):
   counts = {}
   for ticket in tickets:
@@ -90,12 +91,14 @@ def book_a_ticket(tickets):
 
 # func for display all tickets stored in list
 def display_all_tickets(tickets):
+  # O(N), N being the list
   # The lambda function is applied to each item in the list, and the resulting values are used to determine the sort order.
   # https://blogboard.io/blog/knowledge/python-sorted-lambda/
   tickets.sort(key=lambda ticket: (ticket['timestamp'], ticket['event_id']))
   for ticket in tickets:
     print(ticket)
 #func for change the priority number of event this option for admin only 
+# O(N), N being the length of the list
 def change_ticket_priority(tickets):
     ticket_id = int(input("Enter the ticket ID: "))
     new_priority = int(input("Enter the new priority: "))
@@ -105,7 +108,8 @@ def change_ticket_priority(tickets):
        ticket['priority'] = new_priority
        print("The priority number has been changed !!")
        break
-# func for allow the admin to remove a ticket from the system by providing the ticket ID       
+# func for allow the admin to remove a ticket from the system by providing the ticket ID 
+# O(N), N being the length of the list
 def disable_ticket(tickets):
   ticket_id = int(input("Enter the ID to disable: "))
   tickets.sort(key=lambda ticket: (ticket['timestamp'], ticket['event_id']))
@@ -119,6 +123,7 @@ def disable_ticket(tickets):
     
     
 # func for display today's events found in the list
+# worst case => O(N)
 def run_events(tickets):
   for ticket in tickets:
         if ticket['timestamp']== datetime.datetime.today().strftime("%Y-%m-%d"):
