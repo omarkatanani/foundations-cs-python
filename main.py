@@ -109,7 +109,7 @@ def change_ticket_priority(tickets):
        print("The priority number has been changed !!")
        break
 # func for allow the admin to remove a ticket from the system by providing the ticket ID 
-# O(N), N being the length of the list
+# O(N), N being looping 
 def disable_ticket(tickets):
   ticket_id = int(input("Enter the ID to disable: "))
   tickets.sort(key=lambda ticket: (ticket['timestamp'], ticket['event_id']))
@@ -123,7 +123,7 @@ def disable_ticket(tickets):
     
     
 # func for display today's events found in the list
-# worst case => O(N)
+# worst case => O(N) being looping 
 def run_events(tickets):
   for ticket in tickets:
         if ticket['timestamp']== datetime.datetime.today().strftime("%Y-%m-%d"):
