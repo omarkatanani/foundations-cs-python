@@ -91,14 +91,14 @@ def book_a_ticket(tickets):
 
 # func for display all tickets stored in list
 def display_all_tickets(tickets):
-  # O(N), N being the list
+  # O(N), N being looping
   # The lambda function is applied to each item in the list, and the resulting values are used to determine the sort order.
   # https://blogboard.io/blog/knowledge/python-sorted-lambda/
   tickets.sort(key=lambda ticket: (ticket['timestamp'], ticket['event_id']))
   for ticket in tickets:
     print(ticket)
-#func for change the priority number of event this option for admin only 
-# O(N), N being the length of the list
+ #func for change the priority number of event this option for admin only 
+ # O(1), being the length of the list
 def change_ticket_priority(tickets):
     ticket_id = int(input("Enter the ticket ID: "))
     new_priority = int(input("Enter the new priority: "))
@@ -108,12 +108,13 @@ def change_ticket_priority(tickets):
        ticket['priority'] = new_priority
        print("The priority number has been changed !!")
        break
-# func for allow the admin to remove a ticket from the system by providing the ticket ID 
-# O(N), N being looping 
+ # func for allow the admin to remove a ticket from the system by providing the ticket ID 
+ # O(1), being looping 
 def disable_ticket(tickets):
   ticket_id = int(input("Enter the ID to disable: "))
   tickets.sort(key=lambda ticket: (ticket['timestamp'], ticket['event_id']))
   for ticket in tickets:
+    #O(N), N being the length of the list
     if ticket['tick'] == ticket_id:
       tickets.remove(ticket)
       print("\nThe ticket disabled successfully! ..!")
@@ -123,7 +124,7 @@ def disable_ticket(tickets):
     
     
 # func for display today's events found in the list
-# worst case => O(N) being looping 
+# worst case =>  O(N), N being the length of the list
 def run_events(tickets):
   for ticket in tickets:
         if ticket['timestamp']== datetime.datetime.today().strftime("%Y-%m-%d"):
